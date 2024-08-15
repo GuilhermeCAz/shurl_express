@@ -1,0 +1,15 @@
+{
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "include": ["src/**/*.ts", "eslint.config.mjs"],
+  "baseUrl": ".",
+  "paths": {
+    "@entity/*": ["src/entity/*"],
+    "@data-source": ["src/data-source"],
+    "@service/*": ["src/service/*"]
+  }
+}

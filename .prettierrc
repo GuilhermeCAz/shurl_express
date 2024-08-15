@@ -1,0 +1,10 @@
+{
+  "endOfLine": "auto",
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "*.md",
+      "options": { "printWidth": 100 }
+    }
+  ]
+}
