@@ -23,3 +23,14 @@ export const redirectURL = asyncHandler(async (req: Request, res: Response) => {
   if (result) res.redirect(result.originalURL);
   else res.status(404).json({ error: 'URL not found' });
 });
+
+export const listURLs = asyncHandler(async (req: Request, res: Response) => {
+  const urls = await urlService.listURLs();
+  res.json(urls);
+});
+
+export const deleteURL = asyncHandler(async (req: Request, res: Response) => {
+  const { slug } = req.params;
+  await urlService.deleteURL(slug);
+  res.status(204).send();
+});
