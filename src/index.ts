@@ -8,11 +8,6 @@ const app = express(),
 app.use(express.json());
 app.use(urlRoutes);
 
-app.use((err: Error, req: express.Request, res: express.Response) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
-
 connectDatabase()
   .then(() => {
     app.listen(PORT, () => {
