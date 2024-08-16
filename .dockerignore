@@ -1,0 +1,11 @@
+.git/
+.husky/
+node_modules/
+
+.dockerignore
+.gitignore
+.prettierrc
+
+compose.yaml
+eslint.config.js
+README.md
