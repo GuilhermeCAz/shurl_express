@@ -19,6 +19,7 @@ export default tseslint.config(
     plugins: { prettier },
     rules: {
       curly: ['error', 'multi-or-nest'],
+      'init-declarations': ['error', 'never', { ignoreForLoopInit: true }],
       // 'func-style': ['error', 'declaration'],
       'new-cap': 'off',
       'one-var': ['error', 'consecutive'],
