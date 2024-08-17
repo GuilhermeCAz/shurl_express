@@ -1,11 +1,10 @@
-import crypto from 'crypto';
+import { nanoid } from 'nanoid';
 import { IsNull } from 'typeorm';
 import { appDataSource } from '../dataSource.js';
 import { URL } from '../models/URL.js';
 import { User } from '../models/User.js';
 
-const generateSlug = (length: number): string =>
-  crypto.randomBytes(length).toString('base64url');
+const generateSlug = (length: number): string => nanoid(length);
 
 export class URLService {
   private urlRepository = appDataSource.getRepository(URL);
@@ -43,7 +42,8 @@ export class URLService {
 
     await this.urlRepository.save(newURL);
 
-    return newURL;
+    const { user: _user, ...response } = newURL;
+    return response;
   }
 
   async updateURL(
