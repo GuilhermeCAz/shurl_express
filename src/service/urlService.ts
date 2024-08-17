@@ -21,14 +21,37 @@ export class URLService {
 
     return slug;
   }
-  async shortenURL(originalURL: string, userId?: string): Promise<URL> {
+  // eslint-disable-next-line max-lines-per-function
+  async shortenURL(
+    originalURL: string,
+    userId?: string,
+  ): Promise<{
+    originalURL: string;
+    shortURL: string;
+    clickCount: number;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string | null;
+  }> {
     const existingURL = await this.urlRepository.findOneBy({
       originalURL,
       deletedAt: IsNull(),
       user: { id: userId },
     });
 
-    if (existingURL) return existingURL;
+    if (existingURL) {
+      return {
+        originalURL: existingURL.originalURL,
+        shortURL: `http://localhost:3000/${existingURL.slug}`,
+        clickCount: existingURL.clickCount,
+        createdAt: existingURL.createdAt.toISOString(),
+        updatedAt: existingURL.updatedAt.toISOString(),
+        // eslint-disable-next-line no-ternary
+        deletedAt: existingURL.deletedAt
+          ? existingURL.deletedAt.toISOString()
+          : null,
+      };
+    }
 
     const slugLength = 6,
       user = await this.userRepository.findOneBy({ id: userId }),
@@ -42,8 +65,15 @@ export class URLService {
 
     await this.urlRepository.save(newURL);
 
-    const { user: _user, ...response } = newURL;
-    return response;
+    return {
+      originalURL: newURL.originalURL,
+      shortURL: `http://localhost:3000/${newURL.slug}`,
+      clickCount: newURL.clickCount,
+      createdAt: newURL.createdAt.toISOString(),
+      updatedAt: newURL.updatedAt.toISOString(),
+      // eslint-disable-next-line no-ternary
+      deletedAt: newURL.deletedAt ? newURL.deletedAt.toISOString() : null,
+    };
   }
 
   async updateURL(
