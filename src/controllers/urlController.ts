@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
 import { URLService } from '../service/urlService.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
@@ -18,16 +19,19 @@ const urlService = new URLService(),
   };
 
 export const shortenURL = asyncHandler(async (req: Request, res: Response) => {
-  const user = extractUserFromToken(req);
-  let { originalURL } = req.body as { originalURL: string };
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
+
+  const user = extractUserFromToken(req),
+    { originalURL } = req.body as { originalURL: string };
 
   if (!originalURL) {
     res.status(400).json({ error: 'URL is required' });
     return;
   }
-
-  if (!/^http?:\/\//iu.test(originalURL))
-    originalURL = `https://${originalURL}`;
 
   const result = await urlService.shortenURL(originalURL, user?.id);
   res.json(result);

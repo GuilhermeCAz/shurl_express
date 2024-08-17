@@ -12,7 +12,7 @@ import { validateURL } from '../middleware/urlValidatorMiddleware.js';
 const router = Router();
 
 router.get('/urls', authenticateToken, listURLs);
-router.post('/urls', shortenURL);
+router.post('/urls', validateURL, shortenURL);
 router.patch('/urls/:slug', authenticateToken, updateURL);
 router.delete('/urls/:slug', authenticateToken, deleteURL);
 router.get('/:slug', redirectURL);
