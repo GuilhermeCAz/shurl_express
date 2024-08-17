@@ -122,10 +122,8 @@ router.patch('/urls/:slug', authenticateToken, updateURL);
  *         required: true
  *         description: The slug of the shortened URL
  *     responses:
- *       200:
+ *       204:
  *         description: URL deleted successfully
- *       404:
- *         description: URL not found
  *       401:
  *         description: Unauthorized
  */

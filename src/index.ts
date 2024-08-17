@@ -13,7 +13,7 @@ const app = express(),
 
 app.use(express.json());
 app.use(helmet());
-app.use(cors({ origin: '*', methods: ['GET', 'POST', 'PATCH', 'DELETE'] }));
+app.use(cors());
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
