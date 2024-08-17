@@ -1,8 +1,8 @@
 import crypto from 'crypto';
 import { IsNull } from 'typeorm';
-import { appDataSource } from '../dataSource';
-import { URL } from '../models/URL';
-import { User } from '../models/User';
+import { appDataSource } from '../dataSource.js';
+import { URL } from '../models/URL.js';
+import { User } from '../models/User.js';
 
 const generateSlug = (length: number): string =>
   crypto.randomBytes(length).toString('base64url');

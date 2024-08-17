@@ -5,8 +5,9 @@ import {
   redirectURL,
   shortenURL,
   updateURL,
-} from '../controllers/urlController';
-import { authenticateToken } from '../middleware/authMiddleware';
+} from '../controllers/urlController.js';
+import { authenticateToken } from '../middleware/authMiddleware.js';
+import { validateURL } from '../middleware/urlValidatorMiddleware.js';
 
 const router = Router();
 

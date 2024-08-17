@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { URLService } from '../service/urlService';
-import { asyncHandler } from '../utils/asyncHandler';
+import { URLService } from '../service/urlService.js';
+import { asyncHandler } from '../utils/asyncHandler.js';
 
 const urlService = new URLService(),
   extractUserFromToken = (

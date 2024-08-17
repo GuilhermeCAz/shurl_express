@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { appDataSource } from '../dataSource';
-import { User } from '../models/User';
+import { appDataSource } from '../dataSource.js';
+import { User } from '../models/User.js';
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 

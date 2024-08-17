@@ -13,6 +13,7 @@
   "author": "GuilhermeCAz",
   "license": "MIT",
   "description": "",
+  "type": "module",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "express": "^4.19.2",

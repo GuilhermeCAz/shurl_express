@@ -1,7 +1,7 @@
 import express from 'express';
-import { connectDatabase } from './dataSource';
-import authRoutes from './routes/authRoutes';
-import urlRoutes from './routes/urlRoutes';
+import { connectDatabase } from './dataSource.js';
+import authRoutes from './routes/authRoutes.js';
+import urlRoutes from './routes/urlRoutes.js';
 
 const app = express(),
   PORT = process.env.PORT ?? 3000;
