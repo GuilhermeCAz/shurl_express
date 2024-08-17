@@ -34,7 +34,7 @@ export const shortenURL = asyncHandler(async (req: Request, res: Response) => {
   }
 
   const result = await urlService.shortenURL(originalURL, user?.id);
-  res.json(result);
+  res.status(201).json(result);
 });
 
 export const redirectURL = asyncHandler(async (req: Request, res: Response) => {

@@ -12,6 +12,11 @@ export const register = asyncHandler(async (req: Request, res: Response) => {
     return;
   }
 
+  if (await authService.userExists(email)) {
+    res.status(409).json({ error: 'User already exists' });
+    return;
+  }
+
   const user = await authService.register(email, password);
   res.status(201).json(user);
 });

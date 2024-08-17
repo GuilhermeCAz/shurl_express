@@ -34,4 +34,9 @@ export class AuthService {
       return null;
     }
   }
+
+  async userExists(email: string): Promise<boolean> {
+    const user = await this.userRepository.findOneBy({ email });
+    return Boolean(user);
+  }
 }
