@@ -5,11 +5,5 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },
-  "include": ["src/**/*.ts", "eslint.config.mjs"],
-  "baseUrl": ".",
-  "paths": {
-    "@entity/*": ["src/entity/*"],
-    "@data-source": ["src/data-source"],
-    "@service/*": ["src/service/*"]
-  }
+  "include": ["**/*.ts", "eslint.config.mjs"]
 }
