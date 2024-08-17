@@ -4,19 +4,14 @@ import { URLService } from '../service/urlService.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 
 const urlService = new URLService(),
-  extractUserFromToken = (
-    req: Request,
-  ): { id: string; email: string } | null => {
+  extractUserFromToken = (req: Request): { id: string } | null => {
     const authHeader = req.headers.authorization,
       token = authHeader?.split(' ')[1];
 
     if (!token) return null;
 
     try {
-      return jwt.verify(token, process.env.JWT_SECRET!) as {
-        id: string;
-        email: string;
-      };
+      return jwt.verify(token, process.env.JWT_SECRET!) as { id: string };
     } catch {
       return null;
     }

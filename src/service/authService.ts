@@ -16,18 +16,14 @@ export class AuthService {
   }
 
   async login(email: string, password: string): Promise<string | null> {
-    const user = await this.userRepository.findOneBy({
-      email,
-    });
+    const user = await this.userRepository.findOneBy({ email });
 
     if (!user) return null;
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) return null;
 
-    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
-      expiresIn: '1h',
-    });
+    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '3h' });
     return token;
   }
 
