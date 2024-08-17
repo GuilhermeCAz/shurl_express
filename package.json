@@ -4,6 +4,8 @@
   "main": "eslint.config.js",
   "scripts": {
     "down": "docker compose down",
+    "lint-staged": "lint-staged",
+    "prepare": "husky",
     "start": "npx tsx ./src/index.ts",
     "test": "jest",
     "up": "docker compose up --build --detach"
@@ -51,10 +53,5 @@
     "**/*": [
       "prettier --write --ignore-unknown"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged"
-    }
   }
 }
