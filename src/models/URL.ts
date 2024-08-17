@@ -2,16 +2,18 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { User } from './User';
 
 @Entity()
 export class URL {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ type: 'varchar', unique: true })
+  @Column({ type: 'varchar' })
   originalURL!: string;
 
   @Column({ type: 'varchar', unique: true })
@@ -23,9 +25,12 @@ export class URL {
   @CreateDateColumn()
   createdAt!: Date;
 
+  @UpdateDateColumn()
+  updatedAt!: Date;
+
   @Column({ type: 'timestamp', nullable: true })
   deletedAt?: Date;
 
-  @UpdateDateColumn()
-  updatedAt!: Date;
+  @ManyToOne(() => User, (user) => user.urls, { nullable: true })
+  user?: User;
 }

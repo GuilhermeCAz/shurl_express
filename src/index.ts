@@ -1,11 +1,13 @@
 import express from 'express';
 import { connectDatabase } from './dataSource';
+import authRoutes from './routes/authRoutes';
 import urlRoutes from './routes/urlRoutes';
 
 const app = express(),
   PORT = process.env.PORT ?? 3000;
 
 app.use(express.json());
+app.use(authRoutes);
 app.use(urlRoutes);
 
 connectDatabase()
@@ -15,3 +17,5 @@ connectDatabase()
     });
   })
   .catch((error) => console.log('TypeORM connection error: ', error));
+
+export default app;

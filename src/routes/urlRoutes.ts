@@ -4,13 +4,16 @@ import {
   listURLs,
   redirectURL,
   shortenURL,
+  updateURL,
 } from '../controllers/urlController';
+import { authenticateToken } from '../middleware/authMiddleware';
 
 const router = Router();
 
-router.post('/', shortenURL);
-router.get('/url', listURLs);
+router.get('/urls', authenticateToken, listURLs);
+router.post('/urls', shortenURL);
+router.patch('/urls/:slug', authenticateToken, updateURL);
+router.delete('/urls/:slug', authenticateToken, deleteURL);
 router.get('/:slug', redirectURL);
-router.delete('/:slug', deleteURL);
 
 export default router;
